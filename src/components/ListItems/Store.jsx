@@ -11,7 +11,7 @@ const Store = (props) => {
   const store = props.store;
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
 
-  const addItemHandler = () => {
+  const openAddItemHandler = () => {
     setIsAddItemOpen(true);
   };
 
@@ -38,7 +38,7 @@ const Store = (props) => {
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
           <h1 className={classes["store__title"]}>{store.name}</h1>
-          <Button onClick={addItemHandler}>+</Button>
+          <Button onClick={openAddItemHandler}>+</Button>
         </div>
         {itemList}
       </Card>
