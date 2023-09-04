@@ -5,6 +5,13 @@
   margin-top: 2rem;
 }
 
+.store__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .store__title {
   margin-bottom: 0.5rem;
 }

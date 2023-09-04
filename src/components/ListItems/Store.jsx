@@ -1,3 +1,4 @@
+import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import Item from "./Item";
 
@@ -17,7 +18,10 @@ const Store = (props) => {
 
   return (
     <Card className={classes.store}>
-      <h1 className={classes["store__title"]}>{store.name}</h1>
+      <div className={classes["store__header"]}>
+        <h1 className={classes["store__title"]}>{store.name}</h1>
+        <Button>+</Button>
+      </div>
       {itemList}
     </Card>
   );
