@@ -1,9 +1,10 @@
 import { useState } from "react";
 
+import Button from "./components/UI/Button/Button";
 import GetText from "./components/AddField/GetText";
 import Store from "./components/ListItems/Store";
 
-import "./App.css";
+import classes from "./App.module.css";
 
 const DUMMY_DATA = [
   { name: "Costco", items: ["Milk", "Eggs", "Bananas"] },
@@ -52,7 +53,10 @@ const App = () => {
 
   return (
     <>
-      {isAddStoreOpen && <GetText onClose={closeAddStore} />}
+      {isAddStoreOpen && <GetText onClose={closeAddStore} inputFor='Store' />}
+      <Button className={classes["new-store"]} onClick={openAddStore}>
+        New Store
+      </Button>
       {storeList}
     </>
   );
