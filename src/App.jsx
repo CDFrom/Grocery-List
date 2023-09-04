@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import GetText from "./components/AddField/GetText";
+import Store from "./components/ListItems/Store";
 
 import "./App.css";
-import Store from "./components/ListItems/Store";
 
 const DUMMY_DATA = [
   { name: "Costco", items: ["Milk", "Eggs", "Bananas"] },
@@ -11,16 +11,16 @@ const DUMMY_DATA = [
 ];
 
 const App = () => {
-  const [isInputOpen, setIsInputOpen] = useState(false);
+  const [isAddStoreOpen, setIsAddStoreOpen] = useState(false);
   const [storeData, setStoreData] = useState(DUMMY_DATA);
 
-  const openInput = () => {
-    setIsInputOpen(true);
+  const openAddStore = () => {
+    setIsAddStoreOpen(true);
   };
 
-  const closeInput = () => {
+  const closeAddStore = () => {
     setTimeout(() => {
-      setIsInputOpen(false);
+      setIsAddStoreOpen(false);
     }, 300);
   };
 
@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <>
-      {isInputOpen && <GetText onClose={closeInput} />}
+      {isAddStoreOpen && <GetText onClose={closeAddStore} />}
       {storeList}
     </>
   );

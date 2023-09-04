@@ -11,11 +11,11 @@ const Store = (props) => {
   const store = props.store;
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
 
-  const openAddItemHandler = () => {
+  const openAddItem = () => {
     setIsAddItemOpen(true);
   };
 
-  const closeAddItemHandler = () => {
+  const closeAddItem = () => {
     setTimeout(() => {
       setIsAddItemOpen(false);
     }, 300);
@@ -44,14 +44,14 @@ const Store = (props) => {
       {isAddItemOpen && (
         <GetText
           inputFor='Item'
-          onClose={closeAddItemHandler}
+          onClose={closeAddItem}
           onAddItem={addItemHandler}
         />
       )}
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
           <h1 className={classes["store__title"]}>{store.name}</h1>
-          <Button onClick={openAddItemHandler}>+</Button>
+          <Button onClick={openAddItem}>+</Button>
         </div>
         {itemList}
       </Card>
