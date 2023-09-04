@@ -21,8 +21,12 @@ const Store = (props) => {
     }, 300);
   };
 
-  const addItemHandler = (item) => {
-    const updatedItemList = store.items.concat(item);
+  const addItemHandler = (itemToAdd) => {
+    if (store.items.some((item) => item === itemToAdd)) {
+      alert("Item is already in this list...");
+      return;
+    }
+    const updatedItemList = store.items.concat(itemToAdd);
     props.onUpdateStore(store.name, updatedItemList);
   };
 
