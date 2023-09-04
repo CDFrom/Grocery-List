@@ -26,6 +26,11 @@ const App = () => {
   };
 
   const addStoreHandler = (newStore) => {
+    if (storeData.some((store) => store.name === newStore.name)) {
+      alert("Store already exists");
+      return;
+    }
+
     setStoreData((prevState) => {
       return [...prevState, newStore];
     });
