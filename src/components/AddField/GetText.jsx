@@ -14,16 +14,16 @@ const GetText = (props) => {
     event.preventDefault();
 
     const itemInputField = itemInputRef.current;
-    const itemInput = itemInputField.value;
+    const itemInput = itemInputField.value.trim();
 
-    if (!itemInput.trim().length > 0) {
+    if (!itemInput.length > 0) {
       alert("Please add an item name...");
       return;
     }
 
     if (props.inputFor === "Store") {
       const storeInputField = storeInputRef.current;
-      const storeInput = storeInputField.value;
+      const storeInput = storeInputField.value.trim();
       if (!storeInput.trim().length > 0) {
         alert("Please add a store name...");
         return;
