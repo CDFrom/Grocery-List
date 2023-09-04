@@ -5,7 +5,7 @@ import classes from "./Item.module.css";
 
 const Item = (props) => {
   const removeItem = () => {
-    props.removeItem(props.item);
+    props.onRemoveItem(props.item);
   };
 
   return (
