@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import Arrow from "../../assets/Arrow";
 import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import GetText from "../AddField/GetText";
@@ -47,7 +48,10 @@ const Store = (props) => {
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
           <h1 className={classes["store__title"]}>{store.name}</h1>
-          <Button onClick={openAddItem}>+</Button>
+          <div className={classes.actions}>
+            <Arrow />
+            <Button onClick={openAddItem}>+</Button>
+          </div>
         </div>
         {itemList}
       </Card>

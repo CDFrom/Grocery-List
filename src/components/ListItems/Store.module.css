@@ -16,3 +16,9 @@
 .store__title {
   margin-bottom: 0.5rem;
 }
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
