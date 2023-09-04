@@ -15,6 +15,11 @@ const GetText = (props) => {
     const inputField = inputRef.current;
     const input = inputField.value;
 
+    if (props.inputFor === "Store") {
+    } else if (props.inputFor === "Item") {
+      props.onAddItem(input);
+    }
+
     inputField.value = "";
   };
 

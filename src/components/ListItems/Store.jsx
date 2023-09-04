@@ -15,15 +15,20 @@ const Store = (props) => {
     setIsAddItemOpen(true);
   };
 
-  const removeItemHandler = (itemToRemove) => {
-    const updatedItemList = store.items.filter((item) => item !== itemToRemove);
-    props.onUpdateStore(store.name, updatedItemList);
-  };
-
   const closeAddItemHandler = () => {
     setTimeout(() => {
       setIsAddItemOpen(false);
     }, 300);
+  };
+
+  const addItemHandler = (item) => {
+    const updatedItemList = store.items.concat(item);
+    props.onUpdateStore(store.name, updatedItemList);
+  };
+
+  const removeItemHandler = (itemToRemove) => {
+    const updatedItemList = store.items.filter((item) => item !== itemToRemove);
+    props.onUpdateStore(store.name, updatedItemList);
   };
 
   const itemList = store.items.map((item) => {
@@ -33,7 +38,11 @@ const Store = (props) => {
   return (
     <>
       {isAddItemOpen && (
-        <GetText inputFor='Item' onClose={closeAddItemHandler} />
+        <GetText
+          inputFor='Item'
+          onClose={closeAddItemHandler}
+          onAddItem={addItemHandler}
+        />
       )}
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
