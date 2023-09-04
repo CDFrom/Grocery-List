@@ -7,29 +7,58 @@ import Modal from "../UI/Modal/Modal";
 import classes from "./GetText.module.css";
 
 const GetText = (props) => {
-  const inputRef = useRef();
+  const storeInputRef = useRef();
+  const itemInputRef = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const inputField = inputRef.current;
-    const input = inputField.value;
+    const itemInputField = itemInputRef.current;
+    const itemInput = itemInputField.value;
 
-    if (props.inputFor === "Store") {
-    } else if (props.inputFor === "Item") {
-      props.onAddItem(input);
+    if (!itemInput.trim().length > 0) {
+      alert("Please add an item name...");
+      return;
     }
 
-    inputField.value = "";
+    if (props.inputFor === "Store") {
+      const storeInputField = storeInputRef.current;
+      const storeInput = storeInputField.value;
+      if (!storeInput.trim().length > 0) {
+        alert("Please add a store name...");
+        return;
+      }
+      const store = { name: storeInput, items: [itemInput] };
+      props.onAddStore(store);
+    } else {
+      props.onAddItem(itemInput);
+      itemInputField.value = "";
+    }
   };
 
   return (
     <Modal onClose={props.onClose}>
       <Card className={classes.form}>
         <form onSubmit={submitHandler}>
+          {props.inputFor === "Store" && (
+            <div>
+              <label htmlFor='storeInput'>Store: </label>
+              <input
+                type='text'
+                name='storeInput'
+                id='storeInput'
+                ref={storeInputRef}
+              />
+            </div>
+          )}
           <div>
-            <label htmlFor='userInput'>{props.inputFor}: </label>
-            <input type='text' name='userInput' id='userInput' ref={inputRef} />
+            <label htmlFor='itemInput'>Item: </label>
+            <input
+              type='text'
+              name='itemInput'
+              id='itemInput'
+              ref={itemInputRef}
+            />
           </div>
           <Button>Add</Button>
         </form>
