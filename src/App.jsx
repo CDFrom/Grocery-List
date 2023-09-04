@@ -10,12 +10,9 @@ const DUMMY_DATA = [
   { name: "Safeway", items: ["Grapes", "Bread", "Chips"] },
 ];
 
-const storeList = DUMMY_DATA.map((store) => {
-  return <Store key={store.name} store={store} />;
-});
-
 const App = () => {
   const [isInputOpen, setIsInputOpen] = useState(false);
+  const [storeData, setStoreData] = useState(DUMMY_DATA);
 
   const openInput = () => {
     setIsInputOpen(true);
@@ -26,6 +23,32 @@ const App = () => {
       setIsInputOpen(false);
     }, 300);
   };
+
+  const updateStoreHandler = (storeName, itemList) => {
+    const index = storeData.findIndex((store) => store.name === storeName);
+
+    setStoreData((prevState) => {
+      let newList = [...prevState];
+      if (itemList.length < 1) {
+        newList.splice(index, 1);
+        return newList;
+      }
+
+      newList[index] = { ...newList[index], items: itemList };
+      console.log(newList);
+      return newList;
+    });
+  };
+
+  const storeList = storeData.map((store) => {
+    return (
+      <Store
+        key={store.name}
+        store={store}
+        onUpdateStore={updateStoreHandler}
+      />
+    );
+  });
 
   return (
     <>
