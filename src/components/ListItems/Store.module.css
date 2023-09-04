@@ -1,0 +1,10 @@
+.store {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+.store__title {
+  margin-bottom: 0.5rem;
+}
