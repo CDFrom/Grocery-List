@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Button from "./components/UI/Button/Button";
 import GetText from "./components/AddField/GetText";
@@ -6,14 +6,9 @@ import Store from "./components/ListItems/Store";
 
 import classes from "./App.module.css";
 
-const DUMMY_DATA = [
-  { name: "Costco", items: ["Milk", "Eggs", "Bananas"] },
-  { name: "Safeway", items: ["Grapes", "Bread", "Chips"] },
-];
-
 const App = () => {
   const [isAddStoreOpen, setIsAddStoreOpen] = useState(false);
-  const [storeData, setStoreData] = useState(DUMMY_DATA);
+  const [storeData, setStoreData] = useState([]);
 
   const openAddStore = () => {
     setIsAddStoreOpen(true);
@@ -24,6 +19,20 @@ const App = () => {
       setIsAddStoreOpen(false);
     }, 300);
   };
+
+  useEffect(() => {
+    const data = localStorage.getItem("DATA");
+    if (data) {
+      setStoreData(JSON.parse(data));
+    }
+  }, []);
+
+  const firstRender = useRef(true);
+  useEffect(() => {
+    const data = JSON.stringify(storeData);
+    if (!firstRender.current) localStorage.setItem("DATA", data);
+    if (firstRender.current) firstRender.current = false;
+  }, [storeData]);
 
   const addStoreHandler = (newStore) => {
     if (storeData.some((store) => store.name === newStore.name)) {
