@@ -42,11 +42,7 @@ const Store = (props) => {
   return (
     <>
       {isAddItemOpen && (
-        <GetText
-          inputFor='Item'
-          onClose={closeAddItem}
-          onAddItem={addItemHandler}
-        />
+        <GetText onClose={closeAddItem} onAddItem={addItemHandler} />
       )}
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
