@@ -25,6 +25,13 @@ const App = () => {
     }, 300);
   };
 
+  const addStoreHandler = (newStore) => {
+    setStoreData((prevState) => {
+      return [...prevState, newStore];
+    });
+    closeAddStore();
+  };
+
   const updateStoreHandler = (storeName, itemList) => {
     const index = storeData.findIndex((store) => store.name === storeName);
 
@@ -53,7 +60,13 @@ const App = () => {
 
   return (
     <>
-      {isAddStoreOpen && <GetText onClose={closeAddStore} inputFor='Store' />}
+      {isAddStoreOpen && (
+        <GetText
+          onClose={closeAddStore}
+          onAddStore={addStoreHandler}
+          inputFor='Store'
+        />
+      )}
       <Button className={classes["new-store"]} onClick={openAddStore}>
         New Store
       </Button>
