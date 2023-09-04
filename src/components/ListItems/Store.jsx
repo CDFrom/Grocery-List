@@ -6,8 +6,13 @@ import classes from "./Store.module.css";
 const Store = (props) => {
   const store = props.store;
 
+  const removeItemHandler = (itemToRemove) => {
+    const updatedItemList = store.items.filter((item) => item !== itemToRemove);
+    props.onUpdateStore(store.name, updatedItemList);
+  };
+
   const itemList = store.items.map((item) => {
-    return <Item key={item} item={item} />;
+    return <Item key={item} item={item} onRemoveItem={removeItemHandler} />;
   });
 
   return (
