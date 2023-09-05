@@ -10,6 +10,11 @@ const GetText = (props) => {
   const storeInputRef = useRef();
   const itemInputRef = useRef();
 
+  const onCloseHandler = () => {
+    document.getElementById("input-form").classList.add(classes["form-close"]);
+    props.onClose();
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -29,6 +34,7 @@ const GetText = (props) => {
         return;
       }
       const store = { name: storeInput, items: [itemInput] };
+      onCloseHandler();
       props.onAddStore(store);
     } else {
       props.onAddItem(itemInput);
@@ -37,8 +43,8 @@ const GetText = (props) => {
   };
 
   return (
-    <Modal onClose={props.onClose}>
-      <Card className={classes.form}>
+    <Modal onClose={onCloseHandler}>
+      <Card id='input-form' className={classes.form}>
         <form onSubmit={submitHandler}>
           {props.inputFor === "Store" && (
             <div>
