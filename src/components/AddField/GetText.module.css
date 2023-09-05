@@ -10,9 +10,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 .form form input {
   width: 10rem;
   margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
