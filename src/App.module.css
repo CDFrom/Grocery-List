@@ -2,4 +2,6 @@
   display: flex;
   width: fit-content;
   margin: 1rem auto;
+  font-weight: normal;
+  font-size: 1rem;
 }
