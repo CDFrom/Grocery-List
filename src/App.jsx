@@ -43,7 +43,6 @@ const App = () => {
     setStoreData((prevState) => {
       return [...prevState, newStore];
     });
-    closeAddStore();
   };
 
   const updateStoreHandler = (storeName, itemList) => {
