@@ -1,6 +1,8 @@
 .button {
+  background-color: #ddd;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   margin: 0.25rem 0.5rem;
   padding: 0.25rem 0.5rem;
+  font-weight: bold;
 }
