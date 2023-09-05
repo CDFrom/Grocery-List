@@ -4,3 +4,7 @@
   margin: 0.5rem auto;
   font-weight: bold;
 }
+
+.button:active {
+  background-color: rgb(20, 94, 20);
+}

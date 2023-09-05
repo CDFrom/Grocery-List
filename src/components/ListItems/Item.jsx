@@ -11,7 +11,9 @@ const Item = (props) => {
   return (
     <Card className={classes["list-item"]}>
       {props.item}
-      <Button onClick={removeItem}>&#10003;</Button>
+      <Button onClick={removeItem} className={classes.button}>
+        &#10003;
+      </Button>
     </Card>
   );
 };
