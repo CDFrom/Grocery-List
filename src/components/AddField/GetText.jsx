@@ -12,6 +12,7 @@ const GetText = (props) => {
 
   const onCloseHandler = () => {
     document.getElementById("input-form").classList.add(classes["form-close"]);
+    document.getElementById("backdrop").click();
     props.onClose();
   };
 
