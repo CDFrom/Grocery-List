@@ -6,6 +6,23 @@
   background-color: #eeeeee;
 }
 
-.button:active {
+.list-item__right {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.button__edit {
+  padding: 0.25rem;
+}
+
+.button__complete {
+  box-sizing: content-box;
+  width: 1rem;
+  line-height: 1rem;
+  padding: 0.25rem;
+}
+
+.button__complete:active {
   background-color: rgb(15, 121, 15);
 }
