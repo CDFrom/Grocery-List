@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
@@ -9,6 +9,12 @@ import classes from "./GetText.module.css";
 const GetText = (props) => {
   const storeInputRef = useRef();
   const itemInputRef = useRef();
+
+  useEffect(() => {
+    if (props.inputFor === "Edit") {
+      itemInputRef.current.value = props.item;
+    }
+  }, []);
 
   const onCloseHandler = () => {
     document.getElementById("input-form").classList.add(classes["form-close"]);
@@ -27,7 +33,10 @@ const GetText = (props) => {
       return;
     }
 
-    if (props.inputFor === "Store") {
+    if (props.inputFor === "Edit") {
+      onCloseHandler();
+      props.onEditItem(itemInput);
+    } else if (props.inputFor === "Store") {
       const storeInputField = storeInputRef.current;
       const storeInput = storeInputField.value.trim();
       if (!storeInput.trim().length > 0) {
@@ -67,7 +76,7 @@ const GetText = (props) => {
               ref={itemInputRef}
             />
           </div>
-          <Button>Add</Button>
+          <Button>{props.inputFor === "Edit" ? "Edit" : "Add"}</Button>
         </form>
       </Card>
     </Modal>
