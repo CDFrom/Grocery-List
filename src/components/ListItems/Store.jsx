@@ -11,7 +11,9 @@ import classes from "./Store.module.css";
 const Store = (props) => {
   const store = props.store;
   const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+  const [isEditItemOpen, setIsEditItemOpen] = useState(false);
   const [isShelfOpen, setIsShelfOpen] = useState(false);
+  const [itemToEdit, setItemToEdit] = useState();
 
   const openAddItem = () => {
     setIsAddItemOpen(true);
@@ -20,6 +22,17 @@ const Store = (props) => {
   const closeAddItem = () => {
     setTimeout(() => {
       setIsAddItemOpen(false);
+    }, 300);
+  };
+
+  const openEditItem = (item) => {
+    setItemToEdit(item);
+    setIsEditItemOpen(true);
+  };
+
+  const closeEditItem = () => {
+    setTimeout(() => {
+      setIsEditItemOpen(false);
     }, 300);
   };
 
@@ -50,14 +63,37 @@ const Store = (props) => {
     props.onUpdateStore(store.name, updatedItemList);
   };
 
+  const editItemHandler = (editedItem) => {
+    const index = store.items.findIndex((item) => item === itemToEdit);
+    let newItemList = [...store.items];
+    newItemList[index] = editedItem;
+    const updatedItemList = newItemList;
+    props.onUpdateStore(store.name, updatedItemList);
+  };
+
   const itemList = store.items.map((item) => {
-    return <Item key={item} item={item} onRemoveItem={removeItemHandler} />;
+    return (
+      <Item
+        key={item}
+        item={item}
+        onRemoveItem={removeItemHandler}
+        onEditItem={() => openEditItem(item)}
+      />
+    );
   });
 
   return (
     <>
       {isAddItemOpen && (
         <GetText onClose={closeAddItem} onAddItem={addItemHandler} />
+      )}
+      {isEditItemOpen && (
+        <GetText
+          onClose={closeEditItem}
+          onEditItem={editItemHandler}
+          inputFor='Edit'
+          item={itemToEdit}
+        />
       )}
       <Card className={classes.store}>
         <div className={classes["store__header"]}>
