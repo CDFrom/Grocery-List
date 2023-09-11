@@ -9,11 +9,15 @@ const Item = (props) => {
     props.onRemoveItem(props.item);
   };
 
+  const editItem = () => {
+    props.onEditItem(props.item);
+  };
+
   return (
     <Card className={classes["list-item"]}>
       {props.item}
       <div className={classes["list-item__right"]}>
-        <Button className={classes["button__edit"]}>
+        <Button onClick={editItem} className={classes["button__edit"]}>
           <Edit />
         </Button>
         <Button onClick={removeItem} className={classes["button__complete"]}>
