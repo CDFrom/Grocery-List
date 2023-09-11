@@ -56,7 +56,6 @@ const App = () => {
       }
 
       newList[index] = { ...newList[index], items: itemList };
-      console.log(newList);
       return newList;
     });
   };
